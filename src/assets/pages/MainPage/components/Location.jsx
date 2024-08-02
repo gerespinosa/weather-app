@@ -1,29 +1,36 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react';
+import { getCurrentLocation } from '../services/locationService';
 
-import { getCurrentLocation } from '../services/locationService'
+export const Location = ({ onPlaceChange }) => {
+  const [currentLocation, setCurrentLocation] = useState('');
 
-export const Location = ({onPlaceChange}) => {
+  useEffect(() => {
+    getCurrentLocation()
+      .then(locationName => {
+        setCurrentLocation(locationName);
+        onPlaceChange(locationName);
+      })
+      .catch(error => console.log('Error getting location', error));
+  }, []);
 
-    const [currentLocation, setCurrentLocation] = useState('')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onPlaceChange(currentLocation); 
+  };
 
-    useEffect(() => {
-        getCurrentLocation()
-        .then(locationName => {
-            setCurrentLocation(locationName)
-            onPlaceChange(locationName)
-        })
-        .catch((error) => console.log('Error getting location', error))
-      }, [onPlaceChange])
-
-    //   const handleSubmit = () => {
-        
-    //   }
-    
+  const handleChange = (e) => {
+    setCurrentLocation(e.target.value); 
+  };
 
   return (
     <div>
-        <h1>{currentLocation}</h1>
-        {/* <form onSubmit={handleSubmit}></form> */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Enter location..."
+          onChange={handleChange} 
+        />
+      </form>
     </div>
-  )
-}
+  );
+};

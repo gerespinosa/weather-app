@@ -11,7 +11,6 @@ export const Weather = ({place}) => {
             getWeather(place)
             .then(weatherObtained => {
                 setWeather(weatherObtained)
-                console.log(weather)
             })
             .catch(error => {
                 console.log(error)
@@ -27,6 +26,5 @@ export const Weather = ({place}) => {
             <img src={weather?.current?.condition?.icon} alt="current-condition-icon" />
         </div>
     </div>
-
   )
 }
