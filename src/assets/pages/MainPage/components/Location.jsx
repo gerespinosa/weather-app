@@ -23,12 +23,13 @@ export const Location = ({ onPlaceChange }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='flex justify-center'>
+      <form onSubmit={handleSubmit} className='flex justify-center'>
         <input
           type="text"
           placeholder="Enter location..."
           onChange={handleChange} 
+          className='bg-transparent placeholder-white text-white placeholder-opacity-45 font-bold w-2/3'
         />
       </form>
     </div>
