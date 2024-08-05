@@ -3,6 +3,7 @@ import { getCurrentLocation } from '../services/locationService';
 
 export const Location = ({ onPlaceChange }) => {
   const [currentLocation, setCurrentLocation] = useState('');
+  const [searchedLocation, setSearchedLocation] = useState([]);
 
   useEffect(() => {
     getCurrentLocation()
@@ -18,8 +19,23 @@ export const Location = ({ onPlaceChange }) => {
     onPlaceChange(currentLocation); 
   };
 
-  const handleChange = (e) => {
-    setCurrentLocation(e.target.value); 
+  const handleChange = async (e) => {
+    const query = e.target.value;
+    setCurrentLocation(query);
+
+    if (query.length > 0) {
+      try {
+        const response = await fetch(
+          `http://api.weatherapi.com/v1/search.json?key=8405cd09df99445a93402324242607&q=${query}`
+        );
+        const data = await response.json();
+        setSearchedLocation(data);
+      } catch (error) {
+        console.log('Error fetching location data', error);
+      }
+    } else {
+      setSearchedLocation([]);
+    }
   };
 
   return (
@@ -29,8 +45,16 @@ export const Location = ({ onPlaceChange }) => {
           type="text"
           placeholder="Enter location..."
           onChange={handleChange} 
-          className='bg-transparent placeholder-white text-white placeholder-opacity-45 font-bold w-2/3'
+          value={currentLocation}
+          autoComplete='off'
+          list='location-options'
+          className='bg-transparent placeholder-white text-white placeholder-opacity-45 font-thin w-2/3'
         />
+        <datalist id="location-options">
+          {searchedLocation.map((location, index) => (
+            <option key={index} value={`${location.name}, ${location.region}`} />
+          ))}
+        </datalist>
       </form>
     </div>
   );

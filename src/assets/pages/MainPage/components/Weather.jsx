@@ -27,7 +27,7 @@ export const Weather = ({place}) => {
 
   return (
     <div>
-        <h2 className='text-white uppercase font-arial text-sm'>{weather?.location?.name}</h2>
+        <h2 className='text-white uppercase font-arial text-sm'>{weather?.location?.name}, {weather?.location?.region} </h2>
         <MomentOfTheDay/>
         <div className='flex flex-col items-center'>
             <img src={weatherIcon} alt="current-condition-icon"
