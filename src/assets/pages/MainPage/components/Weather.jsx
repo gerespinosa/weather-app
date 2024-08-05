@@ -4,7 +4,8 @@ import { getWeather } from '../services/weatherService'
 
 import { weatherAdapter } from '../../../adapters/weatherAdapter'
 
-import {MomentOfTheDay} from '../components/MomentOfTheDay'
+import { Link } from 'react-router-dom'
+import { MomentOfTheDay } from '../components/MomentOfTheDay'
 
 export const Weather = ({place}) => {
 
@@ -30,11 +31,15 @@ export const Weather = ({place}) => {
         <MomentOfTheDay/>
         <div className='flex flex-col items-center'>
             <img src={weatherIcon} alt="current-condition-icon"
-            className='max-w-1/2 max-h-1/2' />
+            className='max-w-36 max-h-36 mt-6' />
             <h2 className='text-6xl uppercase text-white'>{Math.round(weather?.current?.temp_c)}°C</h2>
             <h2 className='uppercase text-white font-arial'>{weather?.current?.condition?.text}</h2>
             <h2 className='uppercase text-white text-xs'>{Date().toString().substring(0,21)}</h2>
         </div>
+        <Link 
+        place={place} 
+        to={`/${place}`} 
+        className='flex justify-center mt-4 text-purple-700 items-center gap-2'>Next days<i className="fa-solid fa-circle-arrow-right"></i>      </Link>
     </div>
   )
 }

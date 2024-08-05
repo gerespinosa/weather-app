@@ -1,12 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { MainPage } from "./assets/pages/MainPage/MainPage"
+import { DayPage } from "./assets/pages/DayPage/DayPage"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='' element={<MainPage/>}></Route>
+        <Route path='/:place' element={<DayPage/>}></Route>
       </Routes>
     </BrowserRouter>
   )
