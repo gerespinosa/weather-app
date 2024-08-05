@@ -39,7 +39,7 @@ export const Weather = ({place}) => {
         <Link 
         place={place} 
         to={`/${place}`} 
-        className='flex justify-center mt-4 text-purple-700 items-center gap-2'>Next days<i className="fa-solid fa-circle-arrow-right"></i>      </Link>
+        className='flex justify-center mt-4 text-orange-500 items-center gap-2'>Next days<i className="fa-solid fa-circle-arrow-right"></i></Link>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { MainPage } from "./assets/pages/MainPage/MainPage"
-import { DayPage } from "./assets/pages/DayPage/DayPage"
+import { DayPage } from "./assets/pages/ForecastPage/ForecastPage"
 
 function App() {
   return (
