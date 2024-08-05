@@ -27,7 +27,7 @@ export const Forecast = () => {
     },[])
 
     function handleNavigate(date, index) {
-        navigate(`/${date}/${index}`)
+        navigate(`/${place}/${date}/${index}`)
     }
 
   return (
