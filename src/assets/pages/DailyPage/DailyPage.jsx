@@ -1,29 +1,14 @@
-import React, {useState, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import React from 'react'
 
-import { getForecast } from '../ForecastPage/services/forecastService'
+import { DailyWeather } from './components/DailyWeather'
 
 export const DailyPage = () => {
 
-    const [forecast, setForecast] = useState({})
-
-    const {place, date, index} = useParams()
-
-    useEffect(() => {
-        if(place){
-            getForecast(place)
-            .then(forecastObtained => {
-                setForecast(forecastObtained.forecast.forecastday.slice(1)) 
-                console.log(forecast)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }
-    },[])
-
 
   return (
-    <div>{forecast[index]?.date}</div>
+    <div className="w-screen h-screen px-4 py-4 flex flex-col justify-between"
+    style={{ backgroundImage: 'linear-gradient(to bottom, #5726E3, #593778, #000000)' }}>
+        <DailyWeather/>
+    </div>
   )
 }
