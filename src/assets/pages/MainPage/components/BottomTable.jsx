@@ -28,7 +28,7 @@ export const BottomTable = ({place}) => {
                 <img src="https://cdn-icons-png.flaticon.com/512/1146/1146885.png" className='w-8 h-8' alt="sunrise-icon" />
                 <div className='flex flex-col'>
                     <p className='font-thin text-xs'>Sunrise</p>
-                    <h3 className='lowercasef'>{weather?.forecast?.forecastday[0]?.astro?.sunrise}</h3>    
+                    <h3 className='lowercase'>{weather?.forecast?.forecastday[0]?.astro?.sunrise}</h3>    
                 </div>
             </div>
             <div className='flex justify-between gap-1 items-center'>

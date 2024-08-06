@@ -54,6 +54,7 @@ export const Location = ({ onPlaceChange }) => {
             <option key={index} value={`${location.name}, ${location.region}`} />
           ))}
         </datalist>
+        <button type="submit" className="block md:hidden"><i className="fa-solid fa-location-dot text-white"></i></button>
       </form>
       
     </div>
