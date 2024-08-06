@@ -39,13 +39,12 @@ export const Location = ({ onPlaceChange }) => {
   };
 
   return (
-    <div className='flex justify-center'>
-      <form onSubmit={handleSubmit} className='flex justify-center'>
+    <div className='flex'>
+      <form onSubmit={handleSubmit} className='flex'>
         <input
           type="text"
           placeholder="Enter location..."
           onChange={handleChange} 
-          value={currentLocation}
           autoComplete='off'
           list='location-options'
           className='bg-transparent placeholder-white text-white placeholder-opacity-45 font-thin w-2/3'
@@ -56,6 +55,7 @@ export const Location = ({ onPlaceChange }) => {
           ))}
         </datalist>
       </form>
+      
     </div>
   );
 };

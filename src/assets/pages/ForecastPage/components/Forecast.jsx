@@ -1,13 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { getForecast } from '../services/forecastService'
 
 import { dateAdapter } from '../../../adapters/dateAdapter'
 
+import { ScaleContext } from '../../../context/ScaleContext'
+
 export const Forecast = () => {
 
     const [forecast, setForecast] = useState([])
+
+    const {scale} = useContext(ScaleContext)
 
     const { place } = useParams()
 
@@ -44,7 +48,7 @@ export const Forecast = () => {
                             <img src={forecastDay.day.condition.icon} className='w-8 h-8' />
                             <h1>{forecastDay.day.condition.text}</h1>
                         </div>
-                        <h1 className='text-4xl text-right my-auto'>{Math.round(forecastDay.day.avgtemp_c)}°C</h1>
+                        <h1 className='text-4xl text-right my-auto'>{scale === 'Celsius' ? `${Math.round(forecastDay.day.avgtemp_c)}°C` : `${Math.round(forecastDay.day.avgtemp_f)}°F`}</h1>
                     </div>
                 <hr className={index < 6 ? 'opacity-20' : 'opacity-0' } />
                 </>

@@ -1,13 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 
 import { getForecast } from '../../ForecastPage/services/forecastService'
+
+import { ScaleContext } from '../../../context/ScaleContext'
 
 export const DailyWeather = () => {
 
     const [forecast, setForecast] = useState({})
 
     const {place, index} = useParams()
+
+    const {scale} = useContext(ScaleContext)
 
     useEffect(() => {
         if(place){
@@ -24,7 +28,7 @@ export const DailyWeather = () => {
 
   return (
     <div className='text-white flex flex-col'>
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center my-16'>
             <h2 className='text-2xl'>{forecast[index]?.day?.condition.text}</h2>
             <img src={forecast[index]?.day?.condition.icon} alt="weather icon" />
         </div>
@@ -32,12 +36,12 @@ export const DailyWeather = () => {
         <div className='flex flex-col h-fit'>
             <div className='flex justify-between items-center min-h-12'>
                 <h4>Min Temperature: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.mintemp_c}°C</h4>
+                <h4 className='font-thin'>{scale === 'Celsius' ? `${Math.round(forecast[index]?.day?.mintemp_c)}°C` : `${Math.round(forecast[index]?.day?.mintemp_f)}°F`}</h4>
             </div>
             <hr className='opacity-20' />
             <div className='flex justify-between items-center min-h-12'>
                 <h4>Max Temperature: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.maxtemp_c}°C</h4>
+                <h4 className='font-thin'>{scale === 'Celsius' ? `${Math.round(forecast[index]?.day?.maxtemp_c)}°C` : `${Math.round(forecast[index]?.day?.maxtemp_f)}°F`}</h4>
             </div>
             <hr className='opacity-20' />
             <div className='flex justify-between items-center min-h-12'>

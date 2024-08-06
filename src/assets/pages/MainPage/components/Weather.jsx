@@ -7,7 +7,7 @@ import { weatherAdapter } from '../../../adapters/weatherAdapter'
 import { Link } from 'react-router-dom'
 import { MomentOfTheDay } from '../components/MomentOfTheDay'
 
-export const Weather = ({place}) => {
+export const Weather = ({place, scale}) => {
 
     const [weather, setWeather] = useState({})
     const [weatherIcon, setWeatherIcon] = useState('./src/assets/img/sunny.png')
@@ -32,7 +32,7 @@ export const Weather = ({place}) => {
         <div className='flex flex-col items-center'>
             <img src={weatherIcon} alt="current-condition-icon"
             className='max-w-36 max-h-36 mt-6' />
-            <h2 className='text-6xl uppercase text-white'>{Math.round(weather?.current?.temp_c)}°C</h2>
+            <h2 className='text-6xl uppercase text-white'>{scale === 'Celsius' ? `${Math.round(weather?.current?.temp_c)}ºC` : `${Math.round(weather?.current?.temp_f)}ºf`}</h2>
             <h2 className='uppercase text-white font-arial'>{weather?.current?.condition?.text}</h2>
             <h2 className='uppercase text-white text-xs'>{Date().toString().substring(0,21)}</h2>
         </div>
