@@ -5,13 +5,13 @@ import { getForecast } from '../services/forecastService'
 
 import { dateAdapter } from '../../../adapters/dateAdapter'
 
-import { ScaleContext } from '../../../context/ScaleContext'
+import { SettingsContext } from '../../../context/SettingsContext'
 
 export const Forecast = () => {
 
     const [forecast, setForecast] = useState([])
 
-    const {scale} = useContext(ScaleContext)
+    const {scale} = useContext(SettingsContext)
 
     const { place } = useParams()
 
@@ -22,7 +22,6 @@ export const Forecast = () => {
             getForecast(place)
             .then(forecastObtained => {
                 setForecast(forecastObtained.forecast.forecastday) 
-                console.log(forecast)
             })
             .catch(error => {
                 console.log(error)
@@ -40,7 +39,7 @@ export const Forecast = () => {
         if(index <= 6){
             return (
                 <>
-                    <div key={index} className='grid grid-cols-3 text-white min-h-20'
+                    <div key={index} className='grid grid-cols-3 min-h-20'
                         onClick={() => handleNavigate(forecastDay.date, index)}
                         >
                         <h1 className='my-auto'>{dateAdapter(forecastDay.date)}</h1>

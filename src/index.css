@@ -14,3 +14,23 @@ html, body, #root {
     height: 100%;
     width: 100%;
   }
+
+.Light {
+    background-image: linear-gradient(to bottom, #d0bda6, #a2a2d0, #adadbc, #f2f2f2);
+    color:#000000
+}
+
+.Dark {
+    background-image: linear-gradient(to bottom, #e88d25, #a2a2d0, #191970, #000000);
+    color:white
+}
+
+.LightSecondary {
+    background-image: linear-gradient(to bottom, #b4a7d9, #bfb0ce, #eeeeee);
+    color:#000000
+}
+
+.DarkSecondary {
+    background-image: linear-gradient(to bottom, #5726E3, #593778, #000000);
+    color:white
+}

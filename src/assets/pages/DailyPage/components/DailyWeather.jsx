@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import { getForecast } from '../../ForecastPage/services/forecastService'
 
-import { ScaleContext } from '../../../context/ScaleContext'
+import { SettingsContext } from '../../../context/SettingsContext'
 
 export const DailyWeather = () => {
 
@@ -11,7 +11,7 @@ export const DailyWeather = () => {
 
     const {place, index} = useParams()
 
-    const {scale} = useContext(ScaleContext)
+    const {scale} = useContext(SettingsContext)
 
     useEffect(() => {
         if(place){
@@ -27,7 +27,7 @@ export const DailyWeather = () => {
 
 
   return (
-    <div className='text-white flex flex-col'>
+    <div className='flex flex-col'>
         <div className='flex justify-between items-center my-16'>
             <h2 className='text-2xl'>{forecast[index]?.day?.condition.text}</h2>
             <img src={forecast[index]?.day?.condition.icon} alt="weather icon" />

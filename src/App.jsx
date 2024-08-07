@@ -5,11 +5,11 @@ import { MainPage } from './assets/pages/MainPage/MainPage';
 import { ForecastPage } from './assets/pages/ForecastPage/ForecastPage';
 import { DailyPage } from './assets/pages/DailyPage/DailyPage';
 import { SettingsPage } from './assets/pages/SettingsPage/SettingsPage';
-import { ScaleProvider } from '../src/assets/context/ScaleContext'
+import { SettingsProvider } from '../src/assets/context/SettingsContext'
 
 function App() {
   return (
-    <ScaleProvider>
+    <SettingsProvider>
       <BrowserRouter>
         <Routes>
           <Route path='' element={<MainPage/>}></Route>
@@ -18,7 +18,7 @@ function App() {
           <Route path="/settings" element={<SettingsPage/>}/>
         </Routes>
       </BrowserRouter>
-    </ScaleProvider>
+    </SettingsProvider>
   );
 }
 

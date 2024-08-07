@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import { getCurrentLocation } from '../services/locationService';
+import { SettingsContext } from '../../../context/SettingsContext';
 
 export const Location = ({ onPlaceChange }) => {
   const [currentLocation, setCurrentLocation] = useState('');
   const [searchedLocation, setSearchedLocation] = useState([]);
+  const {theme} = useContext(SettingsContext)
 
   useEffect(() => {
     getCurrentLocation()
@@ -47,14 +49,14 @@ export const Location = ({ onPlaceChange }) => {
           onChange={handleChange} 
           autoComplete='off'
           list='location-options'
-          className='bg-transparent placeholder-white text-white placeholder-opacity-45 font-thin w-2/3'
+          className={`bg-transparent placeholder-opacity-65 font-thin w-2/3 ${theme === 'Dark' ? 'placeholder-white' : 'placeholder-black'}`}
         />
         <datalist id="location-options">
           {searchedLocation.map((location, index) => (
             <option key={index} value={`${location.name}, ${location.region}`} />
           ))}
         </datalist>
-        <button type="submit" className="block md:hidden"><i className="fa-solid fa-location-dot text-white"></i></button>
+        <button type="submit" className="block md:hidden"><i className="fa-solid fa-location-dot"></i></button>
       </form>
       
     </div>

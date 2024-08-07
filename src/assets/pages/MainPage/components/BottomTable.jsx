@@ -22,7 +22,7 @@ export const BottomTable = ({place}) => {
     },[place])
 
   return (
-    <div className='flex flex-col gap-2 text-white'>
+    <div className='flex flex-col gap-2'>
         <div className='flex justify-between'>
             <div className='flex justify-between gap-1 items-center'>
                 <img src="https://cdn-icons-png.flaticon.com/512/1146/1146885.png" className='w-8 h-8' alt="sunrise-icon" />
