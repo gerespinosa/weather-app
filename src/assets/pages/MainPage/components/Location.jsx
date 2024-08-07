@@ -8,22 +8,30 @@ export const Location = ({ onPlaceChange }) => {
   const {theme} = useContext(SettingsContext)
 
   useEffect(() => {
-    getCurrentLocation()
+    let storedLocation = sessionStorage.getItem('storedLocation')
+    if(!storedLocation){
+      getCurrentLocation()
       .then(locationName => {
         setCurrentLocation(locationName);
         onPlaceChange(locationName);
       })
       .catch(error => console.log('Error getting location', error));
+    }else{
+      setCurrentLocation(storedLocation)
+      onPlaceChange(storedLocation)
+    }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onPlaceChange(currentLocation); 
+    sessionStorage.setItem('storedLocation', currentLocation)
   };
 
   const handleChange = async (e) => {
     const query = e.target.value;
     setCurrentLocation(query);
+      
 
     if (query.length > 0) {
       try {
