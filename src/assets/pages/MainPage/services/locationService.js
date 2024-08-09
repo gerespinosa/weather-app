@@ -6,7 +6,7 @@ export const getCurrentLocation = () => {
                     try {
                         const { latitude, longitude } = position.coords;
                         const currentLocationString = `${latitude},${longitude}`;
-                        const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=8405cd09df99445a93402324242607&q=${currentLocationString}&aqi=yes&days=7`);
+                        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=8405cd09df99445a93402324242607&q=${currentLocationString}&aqi=yes&days=7`);
                         const currentLocationData = await res.json();
                         const currentLocationName = currentLocationData.location.name;
                         resolve(currentLocationName);

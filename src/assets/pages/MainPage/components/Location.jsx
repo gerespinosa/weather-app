@@ -36,7 +36,7 @@ export const Location = ({ onPlaceChange }) => {
     if (query.length > 0) {
       try {
         const response = await fetch(
-          `http://api.weatherapi.com/v1/search.json?key=8405cd09df99445a93402324242607&q=${query}`
+          `https://api.weatherapi.com/v1/search.json?key=8405cd09df99445a93402324242607&q=${query}`
         );
         const data = await response.json();
         setSearchedLocation(data);
