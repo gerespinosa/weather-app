@@ -5,7 +5,7 @@ import { MainPage } from './assets/pages/MainPage/MainPage';
 import { ForecastPage } from './assets/pages/ForecastPage/ForecastPage';
 import { DailyPage } from './assets/pages/DailyPage/DailyPage';
 import { SettingsPage } from './assets/pages/SettingsPage/SettingsPage';
-import { SettingsProvider } from '../src/assets/context/SettingsContext'
+import { SettingsProvider } from './assets/context/SettingsContext'
 
 function App() {
   return (

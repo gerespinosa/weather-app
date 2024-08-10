@@ -2,23 +2,23 @@ export function weatherAdapter(weatherText) {
 
     switch (weatherText) {
         case 'Sunny':
-            return './src/assets/img/sunny.png'
+            return './img/sunny.png'
             break;
 
         case 'Clear':
-            return './src/assets/img/clear.png';
+            return './img/clear.png';
             break;
 
         case 'Partly Cloudy':
-            return './src/assets/img/cloud.png'
+            return './img/cloud.png'
             break;
 
         case 'Cloudy':
-            return './src/assets/img/mostlycloudy.png'
+            return './img/mostlycloudy.png'
             break;
 
         case 'Overcast':
-            return './src/assets/img/overcast.png'
+            return './img/overcast.png'
             break;
 
         case 'Rainy':
@@ -30,19 +30,19 @@ export function weatherAdapter(weatherText) {
         case 'Patchy rain nearby':
         case 'Patchy light drizzle':
         case 'Light drizzle':
-            return './src/assets/img/rain.png';
+            return './img/rain.png';
             break;
 
         case 'Mist':
         case 'Fog':
         case 'Freezing Fog':
-            return './src/assets/img/fog.png';
+            return './img/fog.png';
             break;
 
         case 'Thundery outbreaks possible':
         case 'Patchy light rain with thunder':
         case 'Moderate or heavy rain with thunder':
-            return './src/assets/img/thunder.png';
+            return './img/thunder.png';
             break;
 
         case 'Patchy sleet possible':
@@ -53,7 +53,7 @@ export function weatherAdapter(weatherText) {
         case 'Moderate or heavy sleet showers':
         case 'Moderate or heavy showers of ice pellets':
         case 'Light showers of ice pellets':
-            return './src/assets/img/sleet.png';
+            return './img/sleet.png';
             break;
 
         case 'Patchy snow possible':
@@ -66,7 +66,7 @@ export function weatherAdapter(weatherText) {
         case 'Moderate or heavy snow showers':
         case 'Patchy light snow with thunder':
         case 'Moderate or heavy snow with thunder':
-            return './src/assets/img/snow.png';
+            return './img/snow.png';
             break;
 
         case 'Patchy freezing drizzle possible':
@@ -79,13 +79,13 @@ export function weatherAdapter(weatherText) {
 
         case 'Blowing snow':
         case 'Blizzard':
-            return './src/assets/img/blizzard.png';
+            return './img/blizzard.png';
             break;
 
         case 'Torrential rain shower':
         case 'Moderate or heavy rain shower':
         case 'Heavy rain':
-            return './src/assets/img/heavyrain.png';
+            return './img/heavyrain.png';
             break;
     }
 }

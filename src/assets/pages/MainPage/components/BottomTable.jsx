@@ -25,14 +25,14 @@ export const BottomTable = ({place}) => {
     <div className='flex flex-col gap-2'>
         <div className='flex justify-between'>
             <div className='flex justify-between gap-1 items-center'>
-                <img src="httpss://cdn-icons-png.flaticon.com/512/1146/1146885.png" className='w-8 h-8' alt="sunrise-icon" />
+                <img src="https://cdn-icons-png.flaticon.com/512/1146/1146885.png" className='w-8 h-8' alt="sunrise-icon" />
                 <div className='flex flex-col'>
                     <p className='font-thin text-xs'>Sunrise</p>
                     <h3 className='lowercase'>{weather?.forecast?.forecastday[0]?.astro?.sunrise}</h3>    
                 </div>
             </div>
             <div className='flex justify-between gap-1 items-center'>
-                <img src="httpss://cdn0.iconfinder.com/data/icons/weather-ii-1/64/moonrise-moonset-sea-low-512.png" className='w-8 h-8' alt="sunrise-icon" />
+                <img src="https://cdn0.iconfinder.com/data/icons/weather-ii-1/64/moonrise-moonset-sea-low-512.png" className='w-8 h-8' alt="sunrise-icon" />
                 <div className='flex flex-col'>
                     <p className='font-thin text-xs text-right'>Sunset</p>
                     <h3 className='lowercase'>{weather?.forecast?.forecastday[0]?.astro?.sunset}</h3>    

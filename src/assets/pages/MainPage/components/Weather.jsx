@@ -12,7 +12,7 @@ import { SettingsContext } from '../../../context/SettingsContext'
 export const Weather = ({place, scale}) => {
 
     const [weather, setWeather] = useState({})
-    const [weatherIcon, setWeatherIcon] = useState('./src/assets/img/sunny.png')
+    const [weatherIcon, setWeatherIcon] = useState('./img/sunny.png')
     const {theme} = useContext(SettingsContext)
 
     useEffect(() => {

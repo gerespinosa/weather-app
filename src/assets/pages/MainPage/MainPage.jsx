@@ -14,7 +14,7 @@ export const MainPage = () => {
   };
 
   return (
-    <div className={`w-screen h-screen p-4 gap-16 relative flex flex-col justify-center ${theme}`}>
+    <div className={`w-full h-full overflow-hidden p-4 gap-16 relative flex flex-col justify-center ${theme}`}>
       <div className='flex justify-between'>
         <Location onPlaceChange={handlePlaceChange} />
         <Link to={'/settings'}><i className="fa-solid fa-ellipsis text-2xl flex justify-end"></i></Link>
