@@ -36,7 +36,7 @@ export const Weather = ({place, scale}) => {
         </div>
         <div className='flex flex-col items-center justify-between'>
             <img src={weatherIcon} alt="current-condition-icon"
-            className='max-w-36 max-h-36 mt-6' />
+            className='max-w-24 max-h-24 mt-2' />
             <h2 className='text-6xl uppercase '>{scale === 'Celsius' ? `${Math.round(weather?.current?.temp_c)}ºC` : `${Math.round(weather?.current?.temp_f)}ºf`}</h2>
             <h2 className='uppercase  font-arial'>{weather?.current?.condition?.text}</h2>
             <h2 className='uppercase text-xs'>{Date().toString().substring(0,21)}</h2>
