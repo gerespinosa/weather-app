@@ -1,84 +1,61 @@
-import React, {useState, useEffect, useContext} from 'react'
-import { useParams } from 'react-router-dom'
-
-import { getForecast } from '../../ForecastPage/services/forecastService'
-
-import { SettingsContext } from '../../../context/SettingsContext'
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { getDailyForecast } from '../../DailyPage/services/dailyForecastService';
+import { SettingsContext } from '../../../context/SettingsContext';
 
 export const DailyWeather = () => {
-
-    const [forecast, setForecast] = useState({})
-
-    const {place, index} = useParams()
-
-    const {scale} = useContext(SettingsContext)
+    const [forecast, setForecast] = useState(null);
+    const { place, index } = useParams();
+    const { scale } = useContext(SettingsContext);
 
     useEffect(() => {
-        if(place){
-            getForecast(place)
-            .then(forecastObtained => {
-                setForecast(forecastObtained.forecast.forecastday.slice(1)) 
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if (place) {
+            getDailyForecast(place, scale, index)
+                .then(forecastObtained => {
+                    setForecast(forecastObtained[index]);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
-    },[])
+    }, [place, scale, index]);
 
+    if (!forecast) {
+        return <div>Loading...</div>;
+    }
 
-  return (
-    <div className='flex flex-col'>
-        <div className='flex justify-between items-center my-16'>
-            <h2 className='text-2xl'>{forecast[index]?.day?.condition.text}</h2>
-            <img src={forecast[index]?.day?.condition.icon} alt="weather icon" />
-        </div>
-        <h3>{forecast[index]?.date}</h3>
-        <div className='flex flex-col h-fit'>
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Min Temperature: </h4>
-                <h4 className='font-thin'>{scale === 'Celsius' ? `${Math.round(forecast[index]?.day?.mintemp_c)}°C` : `${Math.round(forecast[index]?.day?.mintemp_f)}°F`}</h4>
+    return (
+        <div className='flex flex-col'>
+            <div className='flex justify-between items-center my-16'>
+                <h2 className='text-2xl'>{forecast?.dt_txt?.substring(0, 10)}</h2>
+                <img src={`https://openweathermap.org/img/wn/${forecast?.weather?.[0]?.icon}@2x.png`} alt="weather icon" />
             </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Max Temperature: </h4>
-                <h4 className='font-thin'>{scale === 'Celsius' ? `${Math.round(forecast[index]?.day?.maxtemp_c)}°C` : `${Math.round(forecast[index]?.day?.maxtemp_f)}°F`}</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Max Wind Speed: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.maxwind_kph} km/h</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Total Precipitations: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.totalprecip_mm} mm</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Humidity: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.avghumidity}%</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>UV: </h4>
-                <h4 className='font-thin'>{forecast[index]?.day?.uv}</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Moon Phase: </h4>
-                <h4 className='font-thin'>{forecast[index]?.astro?.moon_phase}</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Moonrise/Moonset: </h4>
-                <h4 className='font-thin text-sm'>{forecast[index]?.astro?.moonrise} / {forecast[index]?.astro?.moonset}</h4>
-            </div>
-            <hr className='opacity-20' />
-            <div className='flex justify-between items-center min-h-12'>
-                <h4>Sunrise/Sunset: </h4>
-                <h4 className='font-thin text-sm'>{forecast[index]?.astro?.sunrise} / {forecast[index]?.astro?.sunset}</h4>
+            <div className='flex flex-col h-fit'>
+                <div className='flex justify-between items-center min-h-12'>
+                    <h4>Min Temperature: </h4>
+                    <h4 className='font-thin'>
+                        {scale === 'Celsius' ? `${Math.round(forecast?.main?.temp_min)}°C` : `${Math.round(forecast?.main?.temp_min)}°F`}
+                    </h4>
+                </div>
+                <hr className='opacity-20' />
+                <div className='flex justify-between items-center min-h-12'>
+                    <h4>Max Temperature: </h4>
+                    <h4 className='font-thin'>
+                        {scale === 'Celsius' ? `${Math.round(forecast?.main?.temp_max)}°C` : `${Math.round(forecast?.main?.temp_max)}°F`}
+                    </h4>
+                </div>
+                <hr className='opacity-20' />
+                <div className='flex justify-between items-center min-h-12'>
+                    <h4>Max Wind Speed: </h4>
+                    <h4 className='font-thin'>{forecast?.wind?.speed} km/h</h4>
+                </div>
+                <hr className='opacity-20' />
+                <div className='flex justify-between items-center min-h-12'>
+                    <h4>Humidity: </h4>
+                    <h4 className='font-thin'>{forecast?.main?.humidity}%</h4>
+                </div>
+                <hr className='opacity-20' />
             </div>
         </div>
-</div>
-  )
-}
+    );
+};

@@ -1,59 +1,49 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 import { getForecast } from '../services/forecastService'
-
-import { dateAdapter } from '../../../adapters/dateAdapter'
+import {dateAdapter} from '../../../adapters/dateAdapter'
 
 import { SettingsContext } from '../../../context/SettingsContext'
 
+
 export const Forecast = () => {
-
-    const [forecast, setForecast] = useState([])
-
-    const {scale} = useContext(SettingsContext)
-
-    const { place } = useParams()
-
-    const navigate = useNavigate()
+    const [forecast, setForecast] = useState([]);
+    const { scale } = useContext(SettingsContext);
+    const { place } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if(place){
-            getForecast(place)
-            .then(forecastObtained => {
-                setForecast(forecastObtained.forecast.forecastday) 
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        if (place) {
+            getForecast(place, scale) 
+                .then(forecastObtained => {
+                    setForecast(forecastObtained.list);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
-    },[])
+    }, [place, scale]);
 
-    function handleNavigate(date, index) {
-        navigate(`/${place}/${date}/${index}`)
-    }
+  function handleNavigate(date, index) {
+    navigate(`/${place}/${date}/${index}`)
+  }
+
+  const adaptedArray = forecast.filter(forecastDay =>
+    forecastDay?.dt_txt?.includes("12:00:00")
+  )
 
   return (
     <div className='flex flex-col'>
-    {forecast.slice(1).map((forecastDay, index) => {
-        if(index <= 6){
-            return (
-                <>
-                    <div key={index} className='grid grid-cols-3 min-h-20'
-                        onClick={() => handleNavigate(forecastDay.date, index)}
-                        >
-                        <h1 className='my-auto'>{dateAdapter(forecastDay.date)}</h1>
-                        <div className='flex justify-start text-center align-middle my-auto columns-2'>
-                            <img src={forecastDay.day.condition.icon} className='w-8 h-8' />
-                            <h1>{forecastDay.day.condition.text}</h1>
-                        </div>
-                        <h1 className='text-4xl text-right my-auto'>{scale === 'Celsius' ? `${Math.round(forecastDay.day.avgtemp_c)}°C` : `${Math.round(forecastDay.day.avgtemp_f)}°F`}</h1>
-                    </div>
-                <hr className={index < 6 ? 'opacity-20' : 'opacity-0' } />
-                </>
-            )
-        }
-    })}
+      {adaptedArray.map((forecastDay, index) => (
+            <div key={index} onClick={() => handleNavigate(forecastDay.dt_txt, index)} className='grid grid-cols-4 min-h-20 text-center'>
+                <h2 className='my-auto'>{dateAdapter(forecastDay.dt_txt)}</h2>
+                <h2 className='my-auto'>{forecastDay.weather[0].description}</h2>
+                <img src={`https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png`} alt="logo-weather" className='w-12 h-12 flex m-auto ' />
+                <h2 className='my-auto text-2xl'>{Math.round(forecastDay.main.temp)}{scale === 'Celsius' ? 'ºC' : 'ºF'}</h2>
+                <hr className='col-span-4 border-black border-opacity-45'/>    
+            </div>
+      ))}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { SettingsContext } from "../../../context/SettingsContext";
 
 const key = '8405cd09df99445a93402324242607';
 
-export const getForecast = async (location, scale) => {
+export const getDailyForecast = async (location, scale, index) => {
     try {
         const baseUrl = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${location}&aqi=yes&days=8`;
         const res = await fetch(baseUrl);
@@ -18,8 +18,9 @@ export const getForecast = async (location, scale) => {
 
         const forecastRes = await fetch(forecastUrl);
         const adaptedForecastData = await forecastRes.json();
-
-        return adaptedForecastData;
+        const filteredData = await adaptedForecastData.list.filter(item => item.dt_txt.includes("12:00:00"));
+        // console.log(filteredData)
+        return filteredData
 
     } catch (error) {
         console.error('Error getting weather:', error);
