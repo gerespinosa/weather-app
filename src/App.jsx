@@ -6,6 +6,7 @@ import { ForecastPage } from './assets/pages/ForecastPage/ForecastPage';
 import { DailyPage } from './assets/pages/DailyPage/DailyPage';
 import { SettingsPage } from './assets/pages/SettingsPage/SettingsPage';
 import { SettingsProvider } from './assets/context/SettingsContext'
+import { HourlyPage } from './assets/pages/HourlyPage/HourlyPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='' element={<MainPage/>}></Route>
           <Route path='/:place' element={<ForecastPage/>}></Route>
+          <Route path='/:place/:date' element={<HourlyPage/>}></Route>
           <Route path='/:place/:date/:index' element={<DailyPage/>}></Route>
           <Route path="/settings" element={<SettingsPage/>}/>
         </Routes>

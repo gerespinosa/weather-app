@@ -25,7 +25,7 @@ export const DailyWeather = () => {
     }
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col justify-center'>
             <div className='flex justify-between items-center my-16'>
                 <h2 className='text-2xl'>{forecast?.dt_txt?.substring(0, 10)}</h2>
                 <img src={`https://openweathermap.org/img/wn/${forecast?.weather?.[0]?.icon}@2x.png`} alt="weather icon" />

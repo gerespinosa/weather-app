@@ -35,6 +35,7 @@ export const Forecast = () => {
 
   return (
     <div className='flex flex-col'>
+      <h4 className='text-left font-thin mt-6'>Forecast next 5 days</h4>
       {adaptedArray.map((forecastDay, index) => (
             <div key={index} onClick={() => handleNavigate(forecastDay.dt_txt, index)} className='grid grid-cols-4 min-h-20 text-center'>
                 <h2 className='my-auto'>{dateAdapter(forecastDay.dt_txt)}</h2>

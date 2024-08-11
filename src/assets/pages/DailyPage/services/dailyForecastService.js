@@ -19,7 +19,7 @@ export const getDailyForecast = async (location, scale, index) => {
         const forecastRes = await fetch(forecastUrl);
         const adaptedForecastData = await forecastRes.json();
         const filteredData = await adaptedForecastData.list.filter(item => item.dt_txt.includes("12:00:00"));
-        // console.log(filteredData)
+
         return filteredData
 
     } catch (error) {
